@@ -1,0 +1,113 @@
+---------------------------
+Python virtual environments
+---------------------------
+
+# create
+python -m venv venv
+
+# activate
+. venv/scripts/activate
+
+# deactivate
+deactivate
+
+---
+AWS
+---
+
+nucamp_project_aws
+
+
+EC2, Security groups (inbound traffic rules for port services, IAM roles, ECR (containers)
+
+Instance ID:
+i-0ad28bc94e8666cc1
+
+SSH to EC2 instance:
+ssh -i nucamp-private-key.pem ubuntu@52.89.162.2
+
+Public IPv4 DNS (EC2 Instance):
+ec2-54-213-247-112.us-west-2.compute.amazonaws.com
+
+Elastic IP address (public IP):
+52.89.162.2
+
+Elastic Container Registry URL:
+535541162574.dkr.ecr.us-west-2.amazonaws.com/nucamp_project_aws
+
+--------------------
+Docker Installation:
+--------------------
+
+sudo apt update
+
+# prerequisites/dependencies
+sudo apt install apt-transport-https ca-certificates curl software-properties-common 
+
+# The add-apt-repository command adds the external Docker repository to APT's sources list.
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
+
+# The add-apt-repository command adds the external Docker repository to APT's sources list.
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+
+
+# Update again, since we have changed the APT index
+sudo apt update
+
+# The next command will install Docker to your EC2 instance:
+sudo apt install docker-ce
+
+# adds the current user (the ubuntu user) to the docker group
+sudo usermod -aG docker ${USER}
+
+# downloads Docker Compose (bundled in Docker Desktop, but needs seperate installation here)
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+# changes the permissions of the downloaded docker-compose file to executable (+x) so that we can run it.
+sudo chmod +x /usr/local/bin/docker-compose
+
+# ensure that your session has access to the docker group
+sudo su $USER
+
+# Confirm that both docker and docker-compose were installed
+docker -v
+docker-compose -v
+
+# Install AWS Command Line Interface (need it to interact with ECR and pull Docker containers)
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# Install Unzip utility
+sudo apt install unzip
+
+# Unzip the file
+sudo apt install unzip
+
+# Instal AWS CLI and confirm
+sudo ./aws/install
+aws --version
+
+---------------------------------------
+GitHub & deploy Docker container to EC2
+---------------------------------------
+
+# Create repo and copy URI
+https://github.com/AeranicusCascadia/nucamp_project_aws.git
+
+------------------------
+PostgrSQL Specific Stuff
+------------------------
+
+Expose port 5432 (TCP) in security group rules to allow inbound traffic to PostgreSQL server
+
+# Run PostgreSQL db in Docker container
+sudo docker run --name postgresql -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=post123 -p 5432:5432 -v /data:/var/lib/postgresql/data -d postgres:alpine
+
+# Instal psql for command line
+sudo apt install postgresql-client-common
+
+
+# Can access running server through CLI:
+# psql -h public_ip_adress -p 5432 -U postgres # Reminder: we have run the container with password: post123
+psql -h 52.89.162.2 -p 5432 -U postgres
+
