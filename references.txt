@@ -95,7 +95,7 @@ GitHub & deploy Docker container to EC2
 https://github.com/AeranicusCascadia/nucamp_project_aws.git
 
 ------------------------
-PostgrSQL Specific Stuff
+PostgreSQL Specific Stuff
 ------------------------
 
 Expose port 5432 (TCP) in security group rules to allow inbound traffic to PostgreSQL server
