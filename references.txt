@@ -111,3 +111,14 @@ sudo apt install postgresql-client-common
 # psql -h public_ip_adress -p 5432 -U postgres # Reminder: we have run the container with password: post123
 psql -h 52.89.162.2 -p 5432 -U postgres
 
+-----
+FLASK
+-----
+Can access running Flask server from EC2:
+Can set ENV to file or ‘development.
+FLASK_APP=app.py
+FLASK_APP=development
+
+Need to expose by telling Flask to listen to all public IPs while running:
+flask run --host=0.0.0.0
+
