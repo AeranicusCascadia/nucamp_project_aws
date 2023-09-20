@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'I have changed the app file'
+    return 'Working on local testing of app'
 
 
 if __name__ == '__main__':

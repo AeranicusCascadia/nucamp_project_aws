@@ -88,11 +88,15 @@ sudo ./aws/install
 aws --version
 
 ---------------------------------------
-GitHub & deploy Docker container to EC2
+GitHub & 
 ---------------------------------------
 
+# Deploy Docker container to EC2
 # Create repo and copy URI
 https://github.com/AeranicusCascadia/nucamp_project_aws.git
+
+# pull from Github repo to EC2 instance
+git pull https://github.com/AeranicusCascadia/nucamp_project_aws.git
 
 ------------------------
 PostgreSQL Specific Stuff
