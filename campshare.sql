@@ -153,7 +153,7 @@ ALTER TABLE ONLY public.reservations
 
 INSERT INTO members (member_id, username, password)
 VALUES 
--- (1, 'HotCheeto99', 'foo'),
+(1, 'HotCheeto99', 'foo'),
 (2, 'OceanWanderer1993', 'foobar'),
 (3, 'Kat_Shannon77', 'bar'),
 (4, 'JR_Bob_Dobb', 'barfoo'),
