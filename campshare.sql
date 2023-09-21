@@ -131,8 +131,8 @@ ALTER TABLE ONLY public.listings
 ALTER TABLE ONLY public.members
     ADD CONSTRAINT members_email_key UNIQUE (username);
 
-ALTER TABLE ONLY public.members
-    ADD CONSTRAINT members_password_key UNIQUE (password);
+--ALTER TABLE ONLY public.members
+  --  ADD CONSTRAINT members_password_key UNIQUE (password);
 
 ALTER TABLE ONLY public.members
     ADD CONSTRAINT members_pkey PRIMARY KEY (member_id);
